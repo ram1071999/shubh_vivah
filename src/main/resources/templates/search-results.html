@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment::Head"/>
+<body class="bg-light">
+
+<div th:replace="fragment::newnav1"></div>
+
+<div class="container mt-5">
+  <h3 class="mb-4">Search Results</h3>
+
+  <div th:if="${#lists.isEmpty(results)}">
+  
+    <p class="text-muted">Its not  find your choice profile</p>
+  </div>
+
+<!-- ----------------------------------------- -->
+
+
+<!-- --------------------------------------- -->
+
+
+
+
+
+  <div class="row g-4">
+    <div class="col-md-4" th:each="profile : ${results}">
+      <div class="card shadow-sm h-100">
+        <img th:if="${profile.profilePhoto}" th:src="@{'/uploads/' + ${profile.profilePhoto}}" class="card-img-top" style="height:220px;object-fit:cover;">
+        <div class="card-body">
+          <h5 class="card-title" th:text="${profile.fullName}"></h5>
+          <p class="card-text mb-1">
+            <span th:text="${profile.age}"></span> yrs,
+            <span th:text="${profile.religion}"></span>
+          </p>
+          <p class="card-text text-muted" th:text="${profile.city} + ', ' + ${profile.state}"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div th:replace="fragment::script"></div>
+</body>
+</html>

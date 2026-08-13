@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html  lang='en' xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="fragment::Head"></div>
+
+<body>
+<div th:replace="fragment::newnav1"></div>
+
+<div class="form-card">
+  <div class="form-header">
+    <h2> Matching Form</h2>
+    
+  </div>
+  
+  <div class="form-body">
+  
+  <div th:if="${successMsg}">
+  <h3 style="color:green;" th:text="${successMsg}"></h3> 
+  </div>
+  
+  <div th:if="${errorMsg}">
+  <h3 style="color:red;" th:text="${errorMsg}"></h3> 
+  </div>
+  
+    <form method="post"  th:action="@{/join}" enctype="multipart/form-data" th:object="${join}">
+
+      <!-- Personal Details -->
+      <h5 class="section-title">Personal Details</h5>
+      <div class="row g-3">
+      
+        <div class="col-md-6">
+          <label class="required">Full Name</label>
+          <input type="text" class="form-control" th:field="*{fullName}" placeholder="Apna poora naam likhein" required>
+        </div>
+        
+        <div class="col-md-6">
+          <label class="required">Gender</label>
+          <select class="form-select" name="gender" th:field="*{gender}" required>
+            <option value="" >Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female </option>
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <label class="required">Date of Birth</label>
+          <input type="date" class="form-control" th:field="*{dob}" name="dob" required>
+        </div>
+        <div class="col-md-4">
+          <label class="required">Height</label>
+          
+             <input type="number" class="form-control" th:field="*{height}" placeholder="Height.. ">
+       
+         
+        </div>
+        <div class="col-md-4">
+          <label>Weight</label>
+          <input type="number" class="form-control" th:field="*{weight}" name="weight" placeholder="e.g. 60" min="30" max="200">
+        </div>
+
+        <div class="col-md-6">
+          <label>Marital Status</label>
+          <select class="form-select" name="maritalStatus" th:field="*{maritalStatus}">
+            <option value="Never Married" selected>Never Married</option>
+            <option value="Divorced">Divorced</option>
+            <option value="Widowed">Widowed</option>
+            <option value="Awaiting Divorce">Awaiting Divorce</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label>Language</label>
+         
+          
+          <select class="form-select p-2 rounded-pill m-1" th:field="*{language}"  name="language" aria-label="Default select example">
+  <option value="">select for Language</option>
+  <option value="English">English</option>
+  <option value="Hindi">Hindi</option>
+  
+  <option value="Mandarin">Mandarin Chinese</option>
+  <option value="Spanish">Spanish</option>
+  <option value="Arabic">Arabic</option>
+  <option value="Bengali">Bengali</option>
+  <option value="Portuguese">Portuguese</option>
+  <option value="Russian">Russian</option>
+  <option value="Urdu">Urdu</option>
+  <option value="Indonesian">Indonesian</option>
+  <option value="French">French</option>
+  <option value="German">German</option>
+  <option value="2Japanese">Japanese</option>
+  <option value="Korean">Korean</option>
+  <option value="Turkish">Turkish</option>
+  <option value="Vietnamese">Vietnamese</option>
+  <option value="Italian">Italian</option>
+  <option value="Thai">Thai</option>
+  <option value="Persian">Persian (Farsi)</option>
+  <option value="Punjabi">Punjabi</option>
+  <option value="Telugu">Telugu</option>
+
+  <option value="Marathi">Marathi</option>
+  <option value="Tamil">Tamil</option>
+  <option value="Gujarati">Gujarati</option>
+  <option value="Kannada">Kannada</option>
+  <option value="Malayalam">Malayalam</option>
+  <option value="Odia">Odia</option>
+  <option value="Polish">Polish</option>
+  <option value="Dutch">Dutch</option>
+    <option value="Greek">Greek</option>
+     <option value="Hebrew">Hebrew</option>
+      <option value="Swahili">Swahili</option>
+       <option value="Ukrainian">Ukrainian</option>
+        <option value="Romanian">Romanian</option>
+         <option value="Czech">Czech</option>
+          <option value="Hungarian">Hungarian</option>
+           <option value="Finnish">Finnish</option>
+            <option value="Norwegian">Norwegian</option>
+             <option value="Swedish">Swedish</option>
+             <option value="Danish">Danish</option>
+                <option value="Slovak">Slovak</option>
+                   <option value="Bulgarian">Bulgarian</option>
+                      <option value="Serbian">Serbian</option>
+                         <option value="Croatian">Croatian</option>
+                            <option value="Lithuanian">Lithuanian</option>
+                               <option value="Latvian">Latvian</option>
+                                  <option value="Estonian">Estonian</option>
+                                     <option value="Malay">Malay</option>
+                                        <option value="Filipino">Filipino (Tagalog)</option>
+                                           <option value="Nepali">Nepali</option>
+
+ </select>
+        </div>
+      </div>
+
+      <!-- Religious Details -->
+      <h5 class="section-title">Religious Details</h5>
+      <div class="row g-3">
+        <div class="col-md-4">
+          <label class="required">Religion</label>
+          <select class="form-select" name="religion" th:field="*{religion}" required>
+            <option value="" selected disabled>Select Religion</option>
+            <option value="Hindu">Hindu</option>
+            <option value="Muslim">Muslim</option>
+            <option value="Sikh">Sikh</option>
+            <option value="Christian">Christian</option>
+            <option value="Jain">Jain</option>
+            <option value="Buddhist">Buddhist</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label>Caste / Community</label>
+          <input th:field="*{caste}" type="text" class="form-control" name="caste" placeholder="cast........">
+        </div>
+        <div class="col-md-4">
+          <label>Gotra / Manglik Status</label>
+          <input  th:field="*{gotra}" type="text" class="form-control"  placeholder="e.g. Manglik / Non-Manglik">
+        </div>
+      </div>
+
+      <!-- Education & Career -->
+      <h5 class="section-title">Education & Career</h5>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="required">Highest Education</label>
+          <input th:field="*{education}" type="text" class="form-control" name="education" placeholder="e.g. B.Tech, MBA, B.A." required>
+        </div>
+        <div class="col-md-6">
+          <label>Occupation</label>
+          <input th:field="*{occupation}"  type="text" class="form-control" name="occupation" placeholder="e.g. Software Engineer">
+        </div>
+        <div class="col-md-6">
+          <label>Annual Income</label>
+          
+            <input th:field="*{income}" type="number" class="form-control"  placeholder="Annual Income.....">
+          
+        </div>
+        
+      <!-- Family Details -->
+      <h5 class="section-title">Family Details</h5>
+      <div class="row ">
+        <div class="col-md-6">
+          <label>Father's Name / Occupation< /label>
+          <input th:field="*{fatherDetails}" type="text" class="form-control" name="fatherDetails" placeholder="Pita ka naam / vyavsaay">
+        </div>
+        <div class="col-md-6">
+          <label>Mother's Name / Occupation</label>
+          <input th:field="*{motherDetails}"  type="text" class="form-control" name="motherDetails" placeholder="Mata ka naam / vyavsaay">
+        </div>
+        <div class="col-md-4">
+          <label>No. of Siblings</label>
+          <input th:field="*{siblings}" type="number" class="form-control" name="siblings" min="0" placeholder="0">
+        </div>
+        <div class="col-md-8">
+          <label>Family Type</label>
+          <select th:field="*{familyType}" class="form-select" name="familyType">
+            <option value="Joint">Joint Family</option>
+            <option value="Nuclear">Nuclear Family</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Contact & Location -->
+      <h5 class="section-title">Contact Details</h5>
+      <div class="row g-3">
+      <div class="col-md-6">
+          <label class="required">Address</label>
+          <input th:field="*{address}" type="text" class="form-control" name="address"  placeholder="1address" required>
+        </div>
+        <div class="col-md-6">
+          <label class="required">Mobile Number</label>
+          <input th:field="*{mobile}"  type="tel" class="form-control" name="mobile"  placeholder="10-digit mobile number" required>
+        </div>
+         <div class="col-md-6">
+          <label class="required">Pincode</label>
+          <input th:field="*{pincode}"  type="tel" class="form-control" name="pincode"  placeholder="10-digit mobile number" required>
+        </div>
+        <div class="col-md-6">
+          <label class="required">Email</label>
+          <input th:field="*{email}" type="email" class="form-control" name="email" placeholder="your@email.com" required>
+        </div>
+        <div class="col-md-6">
+          <label>City</label>
+          <input th:field="*{city}" type="text" class="form-control" name="city" placeholder="e.g. Greater Noida">
+        </div>
+        <div class="col-md-6">
+          <label>State</label>
+         
+          
+          <select class="form-select p-2 rounded-pill m-1" th:field="*{state}" name="state">
+  <option value="" selected>select for State</option>
+  <option value="Andhra Pradesh">Andhra Pradesh</option>
+  <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+  <option value="Assam">Assam</option>
+  <option value="Bihar">Bihar</option>
+  <option value="Chhattisgarh">Chhattisgarh</option>
+  <option value="Goa">Goa</option>
+  <option value="Gujarat">Gujarat</option>
+  <option value="Haryana">Haryana</option>
+  <option value="Himachal Pradesh">Himachal Pradesh</option>
+  <option value="Jharkhand">Jharkhand</option>
+  <option value="Karnataka">Karnataka</option>
+  <option value="Kerala">Kerala</option>
+  <option value="Madhya Pradesh">Madhya Pradesh</option>
+  <option value="Maharashtra">Maharashtra</option>
+  <option value="Manipur">Manipur</option>
+  <option value="Meghalaya">Meghalaya</option>
+  <option value="Mizoram">Mizoram</option>
+  <option value="Nagaland">Nagaland</option>
+  <option value="Odisha">Odisha</option>
+  <option value="Punjab">Punjab</option>
+  <option value="Rajasthan">Rajasthan</option>
+  <option value="Sikkim">Sikkim</option>
+  <option value="Tamil Nadu">Tamil Nadu</option>
+  <option value="Telangana">Telangana</option>
+  <option value="Tripura">Tripura</option>
+  <option value="Uttar Pradesh">Uttar Pradesh</option>
+  <option value="Uttarakhand">Uttarakhand</option>
+  <option value="West Bengal">West Bengal</option>
+
+  <!-- Union Territories -->
+  <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+  <option value="Chandigarh">Chandigarh</option>
+  <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+  <option value="Delhi">Delhi</option>
+  <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+  <option value="Ladakh">Ladakh</option>
+  <option value="Lakshadweep">Lakshadweep</option>
+  <option value="Puducherry">Puducherry</option>
+</select>
+ <div class="col-md-12">
+<label>Country</label>
+<select class="form-select w-100 rounded-pill m-1" th:field="*{country}" aria-label="Default select example">
+  <option value="">select for Country</option>
+  <option value="Afghanistan">Afghanistan</option>
+  <option value="Albania">Albania</option>
+  <option value="Algeria">Algeria</option>
+  <option value="Andorra">Andorra</option>
+  <option value="Angola">Angola</option>
+  <option value="Antigua">Antigua</option>
+  <option value="Barbuda">Barbuda</option>
+  <option value="Argentina">Argentina</option>
+  <option value="Armenia">Armenia</option>
+  <option value="Australia">Australia</option>
+  <option value="Austria">Austria</option>
+  <option value="Azerbaijan">Azerbaijan</option>
+  <option value="Bahamas">Bahamas</option>
+  <option value="Bahrain">Bahrain</option>
+  <option value="Barbados">Barbados</option>
+  <option value="Belarus">Belarus</option>
+  <option value="Belgium">Belgium</option>
+  <option value="Belize">Belize</option>
+  <option value="Benin">Benin</option>
+  <option value="Bhutan">Bhutan</option>
+  <option value="Bolivia">Bolivia</option>
+  <option value="Bosnia">Bosnia</option>
+  <option value="Herzegovina">Herzegovina</option>
+  <option value="Botswana">Botswana</option>
+  <option value="Brazil">Brazil</option>
+  <option value="Brunei">Brunei</option>
+  <option value="Bulgaria">Bulgaria</option>
+  <option value="Burkina">Burkina Faso</option>
+  <option value="Burundi">Burundi</option>
+  <option value="Cabo">Cabo</option>
+  <option value="Verde">Verde</option>
+  <option value="Cambodia">Cambodia</option>
+  <option value="Cameroon">Cameroon</option>
+  <option value="Canada">Canada</option>
+  <option value="Central African Republic">Central African Republic</option>
+   <option value="Chad">Chad</option>
+  <option value="China">China</option>
+   <option value="Colombia">Colombia</option>
+    <option value="Comoros">Comoros</option>
+     <option value="Republic of the Congo">Republic of the Congo</option>
+      <option value="Democratic Republic of the Congo">Democratic Republic of the Congo</option>
+       <option value="Costa Rica">Costa Rica</option>
+        <option value="Côte d'Ivoire">Côte d'Ivoire</option>
+         <option value="Croatia">Croatia</option>
+          <option value="Cuba">Cuba</option>
+           <option value="Cyprus">Cyprus</option>
+            <option value="zech Republic Denmark">Czech Republic Denmark</option>
+             <option value="Djibouti">Djibouti</option>
+              <option value="Dominica">Dominica</option>
+               <option value="Dominican Republic Ecuador">Dominican Republic Ecuador</option>
+                <option value="Egypt">Egypt</option>
+                 <option value="El Salvador">El Salvador</option>
+                  <option value="Eritrea">Equatorial Guinea, Eritrea</option>
+                  <option value="Estonia">Estonia</option>
+                   <option value="Eswatini">Eswatini</option>
+                    <option value="Ethiopia_Fiji">Ethiopia Fiji</option>
+                     <option value="Finland">Finland</option>
+                      <option value="France_Gabon">France Gabon</option>
+                       <option value="Gambia">Gambia</option>
+                        <option value="Georgia">Georgia</option>
+                         
+                          <option value="Ghana">Ghana</option>
+                           <option value="Greece">Greece</option>
+                            <option value="Grenada">Grenada</option>
+                             <option value="Guatemala">Guatemala</option>
+                              <option value="Guinea">Guinea</option>
+                               <option value="Guinea‑Bissau">Guinea‑Bissau</option>
+                               <option value="Guyana_Haiti">Guyana Haiti</option>
+                               <option value="Honduras">Honduras</option>
+                               <option value="Hungary_Iceland">Hungary Iceland</option>
+                               <option value="India">India</option>
+                               <option value="Indonesia">Indonesia</option>
+                               <option value="Iran">Iran</option>
+                               <option value="Iraq">Iraq</option>
+                               <option value="Ireland">Ireland</option>
+                                <option value="Israel">Israel</option>
+                               <option value="Italy_Jamaica">Italy Jamaica</option>
+                               <option value="Japan">Japan</option>
+                               <option value="Jordan_Kazakhstan">Jordan Kazakhstan</option>
+                               <option value="Kenya">Kenya</option>
+                               <option value="Kiribati">Kiribati</option>
+                               <option value="North_Korea">North Korea</option>
+                               <option value="South_Korea">South Korea</option>
+                               <option value="Kuwait">Kuwait</option>
+                               <option value="Kyrgyzstan">Kyrgyzstan Laos</option>
+                               <option value="Latvia">Latvia</option>
+                               <option value="Lebanon">Lebanon</option>
+                               <option value="Lesotho">Lesotho</option>
+                               <option value="Liberia">Liberia</option>
+                               <option value="Libya">Libya</option>
+                               <option value="Liechtenstein">Liechtenstein</option>
+                               <option value="Lithuania">Lithuania</option>
+                               <option value="Luxembourg">Luxembourg Madagascar</option>
+                               <option value="Malawi">Malawi</option>
+                               <option value="Malaysia">Malaysia</option>
+                               <option value="Maldives">Maldives</option>
+                               <option value="Mali">Mali</option>
+                               <option value="Malta">Malta</option>
+                               <option value="Marshall">Marshall Islands</option>
+                               <option value="Mauritania">Mauritania</option>
+                               <option value="Mauritius">Mauritius</option>
+                               <option value="Mexico">Mexico</option>
+                               <option value="Micronesia">Micronesia</option>
+                               <option value="Moldova">Moldova</option>
+                               <option value="Monaco">Monaco</option>
+                               <option value="Mongolia">Mongolia</option>
+                               <option value="Montenegro">Montenegro</option>
+                               <option value="Morocco">Morocco</option>
+                                <option value="Mozambique">Mozambique</option>
+                                
+                                 <option value="Myanmar Namibia">Myanmar Namibia</option>
+                                 
+                                  <option value="Nauru">Nauru </option>
+                                     <option value="Nepal">Nepal</option>
+                                      <option value="Netherlands">Netherlands</option>
+                                       <option value="New Zealand"> New Zealand</option>
+                                        <option value="Nicaragua">Nicaragua</option>
+                                         <option value="Nigeria">Nigeria</option>
+                                          <option value="North Macedonia">North Macedonia</option>
+                                           <option value="Norway Oman">Norway Oman </option>
+                                          <option value="Pakistan">Pakistan</option>
+                                            <option value="Palau">Palau</option> 
+                                            <option value="Panama">Panama</option> 
+                                            <option value="Papua New Guinea">Papua New Guinea</option> 
+                                            <option value="Paraguay">Paraguay</option> 
+                                            <option value="Peru">Peru</option> 
+                                            <option value="Philippines">Philippines</option> 
+                                            <option value="Poland">Poland</option> 
+                                            <option value="Portugal Qatar Romania">Portugal Qatar Romania</option> 
+                                            <option value="Russia">Russia</option> 
+                                            <option value="Rwanda Saint Kitts and Nevis">Rwanda Saint Kitts and Nevis</option> 
+                                            <option value="Saint Lucia">Saint Lucia</option> 
+                                            <option value="Saint Vincent">Saint Vincent and the Grenadines</option> 
+                                            <option value="Samoa">Samoa</option> 
+                                            <option value="San Marino">San Marino</option> 
+                                            <option value="São Tomé and Príncipe">São Tomé and Príncipe</option> 
+                                            <option value="Saudi Arabia">Saudi Arabia</option> 
+                                            <option value="Senegal">Senegal</option> 
+                                            <option value="Serbia">Serbia</option> 
+                                            <option value="Seychelles">Seychelles</option> 
+                                            <option value="Sierra Leone">Sierra Leone</option> 
+                                            <option value="Singapore">Singapore</option> 
+                                            <option value="Slovakia">Slovakia</option>
+                                            <option value="Solomon Islands">Solomon Islands</option>
+                                            <option value="Somalia">Somalia</option>
+                                            <option value="South Sudan">South Sudan</option>
+                                            <option value="Spain">Spain</option>
+                                            <option value="Sri_Lanka">Sri Lanka</option>
+                                            <option value="Sudan">Sudan</option>
+                                            <option value="Suriname">Suriname</option>
+                                            <option value="Sweden">Sweden</option>
+                                            <option value="Switzerland">Switzerland</option>
+                                            <option value="Syria Tajikistan">Syria Tajikistan</option>
+                                            <option value="Tanzania">Tanzania</option>
+                                            <option value="Thailand">Thailand</option>
+                                            <option value="Timor‑Leste">Timor‑Leste</option>
+                                            <option value="Togo">Togo</option>
+                                            <option value="Tonga">Tonga</option>
+                                            <option value="Trinidad">Trinidad and Tobago</option>
+                                            <option value="Tunisia">Tunisia</option>
+                                            <option value="Turkey">Turkey</option>
+                                            <option value="Turkmenistan">Turkmenistan</option>
+                                            <option value="Tuvalu Uganda">Tuvalu Uganda</option>
+                                            <option value="Ukraine">Ukraine</option>
+                                            <option value="United Arab Emirates">United Arab Emirates</option>
+                                            <option value="United Kingdom">United Kingdom</option>
+                                            <option value="United States"> United States</option>
+                                            <option value="Uruguay">Uruguay</option>
+                                            <option value="Uzbekistan Vanuatu">Uzbekistan Vanuatu</option>
+                                            <option value="Vatican">Vatican City</option>
+                                            <option value="Venezuela">Venezuela</option>
+                                            <option value="Vietnam Yemen Zambia">Vietnam Yemen Zambia</option>
+                                            <option value="Zimbabwe">Zimbabwe</option>
+                                            
+</select>
+</div>
+
+        </div>
+      </div>
+
+      <!-- Partner Preference -->
+      <h5 class="section-title">Partner Preference</h5>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label>Age Range</label>
+          <div class="d-flex gap-2">
+            <input  th:field="*{prefAgeMin}" type="number" class="form-control" name="prefAgeMin"  placeholder="Min age">
+            <input th:field="*{prefAgeMax}"  type="number" class="form-control" name="prefAgeMax"  placeholder="Max age">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label>Preferred Religion</label>
+          
+          <select class="form-select p-2 rounded-pill m-1" th:field="*{prefReligion}"  aria-label="Default select example" >
+  <option value="">select for Preferred Religion</option>
+  <option value="Hindu">Hindu</option>
+  <option value="Muslim">Muslim</option>
+  <option value="Christian">Christian</option>
+  <option value="Sikh">Sikh</option>
+    <option value="Parsi">Parsi</option>
+        <option value="Jain">Jain</option>
+            <option value="Buddhist">Buddhist</option>
+                 <option value="No Religion">No Religion</option>
+                     <option value="Spiritual">Spiritual</option>
+                         <option value="Other">Other</option>
+  </select>
+        </div>
+        <div class="col-12">
+          <label>Additional Preferences</label>
+          <textarea th:field="*{additionalPref}" class="form-control" name="additionalPref" rows="3" placeholder="Additional Preferences"></textarea>
+        </div>
+      </div>
+     <!-- Photo Upload -->
+      <h5 class="section-title">Upload Photo</h5>
+      <div class="row g-3">
+        <div class="col-md-8">
+         <input th:field="*{profilePhotoFile}" type="file" class="form-control" accept="image/*">
+          <small class="text-muted">JPG/PNG only, max 2MB</small>
+        </div>
+      </div>
+
+      <!-- Terms -->
+<!--       <div class="form-check mt-4"> -->
+<!--         <input th:field="${vivahDto.terms}" class="form-check-input" type="checkbox" name="terms" id="terms" required> -->
+<!--         <label class="form-check-label" for="terms"> -->
+          
+<!--         </label> -->
+<!--       </div> -->
+
+      <div class="text-center mt-4">
+        <input type="submit" value="Join Wedding"/>
+      </div>
+
+    </form>
+  </div>
+</div>
+<!-- --------------script -->
+
+<div th:replace="fragment::script"></div>
+</body>
+</html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       

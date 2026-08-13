@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Edit Profile - Shubh Vivah</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-custom">
+  <div class="container">
+    <a class="navbar-brand" href="/profiles">💍 Shubh Vivah</a>
+    <div class="ms-auto">
+      <a class="nav-link d-inline-block" href="/profiles">All Profiles</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card form-card p-4">
+        <h3 class="section-title">Profile Edit करें</h3>
+
+        <img th:if="${profile.imageFileName != null}"
+             th:src="@{'/images/' + ${profile.imageFileName}}"
+             class="profile-photo mb-3" alt="photo">
+
+        <form th:action="@{/profiles/edit(id=${profile.id})}" method="post"
+              enctype="multipart/form-data" th:object="${profileDto}">
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Full Name</label>
+              <input type="text" th:field="*{fullName}" class="form-control">
+              <p class="text-danger" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></p>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Email</label>
+              <input type="email" th:field="*{email}" class="form-control">
+              <p class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Password</label>
+              <input type="password" th:field="*{password}" class="form-control">
+              <p class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Phone</label>
+              <input type="text" th:field="*{phone}" class="form-control">
+              <p class="text-danger" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></p>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Gender</label>
+              <select th:field="*{gender}" class="form-select">
+                <option value="">Select</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+              <p class="text-danger" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></p>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Religion</label>
+              <input type="text" th:field="*{religion}" class="form-control">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Caste</label>
+              <input type="text" th:field="*{caste}" class="form-control">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">City</label>
+              <input type="text" th:field="*{city}" class="form-control">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Education</label>
+              <input type="text" th:field="*{education}" class="form-control">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Profession</label>
+              <input type="text" th:field="*{profession}" class="form-control">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">New Photo (optional)</label>
+              <input type="file" th:field="*{imageFile}" class="form-control">
+              <small class="text-muted">खाली छोड़ दें अगर photo बदलनी नहीं है</small>
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">About Me</label>
+              <textarea th:field="*{aboutMe}" class="form-control" rows="3"></textarea>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-maroon mt-4 px-4">Update करें</button>
+          <a href="/profiles" class="btn btn-outline-secondary mt-4">Cancel</a>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>&copy; 2026 Shubh Vivah Marriage Bureau — College Project</footer>
+
+</body>
+</html>
