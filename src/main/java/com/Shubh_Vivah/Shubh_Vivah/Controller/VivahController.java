@@ -42,6 +42,50 @@ public class VivahController {
 		    List<VivahModel> results = vivahService.searchProfiles(gender, religion, country, state, language);
 	    model.addAttribute("results", results);
 	    return "search-results";}   
+	@Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+	
+	@GetMapping("/register")
+    public String showRegisterForm(Model model) {
+        model.addAttribute("user", new User());
+        return "registration";
+    }
+
+    // Handle form submission
+    @PostMapping("/register")
+    public String submitForm(@Valid @ModelAttribute("user") User user,
+                              BindingResult result,
+                              @RequestParam("confirmPassword") String confirmPassword,
+                              Model model) {
+
+        // Bean validation errors (blank fields, bad email/phone format, etc.)
+        if (result.hasErrors()) {
+            return "registration";
+        }
+
+        // Password match check
+        if (!user.getPassword().equals(confirmPassword)) {
+            model.addAttribute("errorMessage", "Password and Confirm Password do not match.");
+            return "registration";
+        }
+
+        // Duplicate email check
+        if (userRepository.existsByEmail(user.getEmail())) {
+            model.addAttribute("errorMessage", "This email is already registered.");
+            return "registration";
+        }
+
+        // Hash password before saving
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        userRepository.save(user);
+
+        model.addAttribute("fullName", user.getFullName());
+        return "success";
+    }
 	
 
 		 
