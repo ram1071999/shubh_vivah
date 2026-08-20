@@ -77,8 +77,7 @@ public class VivahController {
             model.addAttribute("errorMessage", "This email is already registered.");
             return "registration";
         }
-
-        // Hash password before saving
+ // Hash password before saving
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         userRepository.save(user);
