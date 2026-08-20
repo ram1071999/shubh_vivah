@@ -1,8 +1,10 @@
 package com.Shubh_Vivah.Shubh_Vivah.Controller;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.Shubh_Vivah.Shubh_Vivah.Model.User;
 import com.Shubh_Vivah.Shubh_Vivah.Model.VivahModel;
+import com.Shubh_Vivah.Shubh_Vivah.Repository.UserRepository;
 import com.Shubh_Vivah.Shubh_Vivah.Services.VivahService;
+import jakarta.validation.Valid;
+
 @Controller
 public class VivahController {
 	@GetMapping("/wedding")
@@ -44,7 +49,6 @@ public class VivahController {
 	    return "search-results";}   
 	@Autowired
     private UserRepository userRepository;
-
     @Autowired
     private PasswordEncoder passwordEncoder;
 	
@@ -53,25 +57,21 @@ public class VivahController {
         model.addAttribute("user", new User());
         return "registration";
     }
-
     // Handle form submission
     @PostMapping("/register")
     public String submitForm(@Valid @ModelAttribute("user") User user,
                               BindingResult result,
                               @RequestParam("confirmPassword") String confirmPassword,
                               Model model) {
-
         // Bean validation errors (blank fields, bad email/phone format, etc.)
         if (result.hasErrors()) {
             return "registration";
         }
-
         // Password match check
         if (!user.getPassword().equals(confirmPassword)) {
             model.addAttribute("errorMessage", "Password and Confirm Password do not match.");
             return "registration";
         }
-
         // Duplicate email check
         if (userRepository.existsByEmail(user.getEmail())) {
             model.addAttribute("errorMessage", "This email is already registered.");
@@ -79,13 +79,10 @@ public class VivahController {
         }
  // Hash password before saving
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-
         userRepository.save(user);
-
         model.addAttribute("fullName", user.getFullName());
         return "success";
     }
 	
-
 		 
 }
