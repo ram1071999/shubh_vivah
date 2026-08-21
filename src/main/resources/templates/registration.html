@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragment::Head">
-
 </head>
 <body>
 <div th:replace="fragment::nawnav1"></div>
-
 
 <div class="container my-5">
   <div class="row justify-content-center">
@@ -31,16 +29,20 @@
               </div>
               <div class="col-md-3">
                 <label class="form-label">Gender *</label>
-                <select class="form-select" th:field="*{gender}">
+                <select class="form-select" th:field="*{gender}"
+                        th:classappend="${#fields.hasErrors('gender')} ? 'is-invalid'">
                   <option value="">Select</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                   <option value="Other">Other</option>
                 </select>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></div>
               </div>
               <div class="col-md-3">
                 <label class="form-label">Date of Birth *</label>
-                <input type="date" class="form-control" th:field="*{dob}">
+                <input type="date" class="form-control" th:field="*{dob}"
+                       th:classappend="${#fields.hasErrors('dob')} ? 'is-invalid'">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"></div>
               </div>
 
               <div class="col-md-4">
@@ -53,12 +55,14 @@
               </div>
               <div class="col-md-4">
                 <label class="form-label">Marital Status *</label>
-                <select class="form-select" th:field="*{maritalStatus}">
+                <select class="form-select" th:field="*{maritalStatus}"
+                        th:classappend="${#fields.hasErrors('maritalStatus')} ? 'is-invalid'">
                   <option value="">Select</option>
                   <option value="Never Married">Never Married</option>
                   <option value="Divorced">Divorced</option>
                   <option value="Widowed">Widowed</option>
                 </select>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('maritalStatus')}" th:errors="*{maritalStatus}"></div>
               </div>
 
               <div class="col-md-4">
