@@ -1,196 +1,102 @@
-package com.Shubh_Vivah.Shubh_Vivah.Model;
+package com.Shubh_Vivah.Shubh_Vivah.Controller;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.time.LocalDate;
+import com.Shubh_Vivah.Shubh_Vivah.Model.User;
+import com.Shubh_Vivah.Shubh_Vivah.Model.VivahModel;
+import com.Shubh_Vivah.Shubh_Vivah.Repository.UserRepository;
+import com.Shubh_Vivah.Shubh_Vivah.Services.VivahService;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 
-@Entity
-@Table(name = "users")
-public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+import jakarta.validation.Valid;
+@Controller
+public class VivahController {
+	@GetMapping("/wedding")
+	public String ShowIndex() {
+				return "index";}
+		@Autowired
+	private VivahService vivahService;
+	@GetMapping("/JoinWedding")
+	public String CreateJoinpage(Model model) {
+				model.addAttribute("join", new VivahModel());
+				return "Join";	}
+	@PostMapping("/join")
+	public String SubmitJoinWedding(@ModelAttribute("join") VivahModel vivahModel,RedirectAttributes redirectAttributes) {
+		boolean status=vivahService.joinUser(vivahModel);
+		if (status) {
+	        redirectAttributes.addFlashAttribute("successMsg", "User Join Wedding Successfully");
+	    } else {
+	        redirectAttributes.addFlashAttribute("errorMsg", "User Not Join Wedding due to some error");
+	    }
+		return "redirect:/JoinWedding";	}
+	@GetMapping("/search")
+	public String searchProfiles(
+	        @RequestParam(required = false) String gender,
+	        @RequestParam(required = false) String religion,
+	        @RequestParam(required = false) String country,
+	        @RequestParam(required = false) String state,
+	        @RequestParam(required = false) String language,
+	        Model model) {
+		    List<VivahModel> results = vivahService.searchProfiles(gender, religion, country, state, language);
+	    model.addAttribute("results", results);
+	    return "search-results";
+	    }
+	
+	@Autowired
+    private UserRepository userRepository;
 
-    @NotBlank(message = "Full name is required")
-    private String fullName;
-
-    @NotBlank(message = "Gender is required")
-    private String gender;
-
-    @NotNull(message = "Date of birth is required")
-    private LocalDate dob;
-
-    private String religion;
-
-    private String caste;
-
-    @NotBlank(message = "Marital status is required")
-    private String maritalStatus;
-
-    private String height;
-
-    private String education;
-
-    private String occupation;
-
-    private String annualIncome;
-
-    private String city;
-
-    private String state;
-
-    @NotBlank(message = "Email is required")
-    @Email(message = "Enter a valid email address")
-    private String email;
-
-    @NotBlank(message = "Phone number is required")
-    @Pattern(regexp = "^[0-9]{10}$", message = "Enter a valid 10-digit phone number")
-    private String phone;
-
-    @NotBlank(message = "Password is required")
-    @Size(min = 6, message = "Password must be at least 6 characters")
-    private String password;
-
-    public User() {
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+	
+	@GetMapping("/register")
+    public String showRegisterForm(Model model) {
+        model.addAttribute("user", new User());
+        return "registration";
     }
 
-    // Getters and Setters
+    // Handle form submission
+    @PostMapping("/register")
+    public String submitForm(@Valid @ModelAttribute("user") User user,
+                              BindingResult result,
+                              @RequestParam("confirmPassword") String confirmPassword,
+                              Model model) {
 
-    public Long getId() {
-        return id;
-    }
+        // Bean validation errors (blank fields, bad email/phone format, etc.)
+        if (result.hasErrors()) {
+            return "registration";
+        }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+        // Password match check
+        if (!user.getPassword().equals(confirmPassword)) {
+            model.addAttribute("errorMessage", "Password and Confirm Password do not match.");
+            return "registration";
+        }
 
-    public String getFullName() {
-        return fullName;
-    }
+        // Duplicate email check
+        if (userRepository.existsByEmail(user.getEmail())) {
+            model.addAttribute("errorMessage", "This email is already registered.");
+            return "registration";
+        }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
+        // Hash password before saving
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-    public String getGender() {
-        return gender;
-    }
+        userRepository.save(user);
 
-    public void setGender(String gender) {
-        this.gender = gender;
+        model.addAttribute("fullName", user.getFullName());
+        return "success";
     }
+	
 
-    public LocalDate getDob() {
-        return dob;
-    }
-
-    public void setDob(LocalDate dob) {
-        this.dob = dob;
-    }
-
-    public String getReligion() {
-        return religion;
-    }
-
-    public void setReligion(String religion) {
-        this.religion = religion;
-    }
-
-    public String getCaste() {
-        return caste;
-    }
-
-    public void setCaste(String caste) {
-        this.caste = caste;
-    }
-
-    public String getMaritalStatus() {
-        return maritalStatus;
-    }
-
-    public void setMaritalStatus(String maritalStatus) {
-        this.maritalStatus = maritalStatus;
-    }
-
-    public String getHeight() {
-        return height;
-    }
-
-    public void setHeight(String height) {
-        this.height = height;
-    }
-
-    public String getEducation() {
-        return education;
-    }
-
-    public void setEducation(String education) {
-        this.education = education;
-    }
-
-    public String getOccupation() {
-        return occupation;
-    }
-
-    public void setOccupation(String occupation) {
-        this.occupation = occupation;
-    }
-
-    public String getAnnualIncome() {
-        return annualIncome;
-    }
-
-    public void setAnnualIncome(String annualIncome) {
-        this.annualIncome = annualIncome;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+		 
 }
