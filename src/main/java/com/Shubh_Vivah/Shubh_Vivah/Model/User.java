@@ -28,7 +28,7 @@ public class User {
     private String gender;
 
     @NotNull(message = "Date of birth is required")
-    private LocalDate dob;
+    private Date dob;
 
     private String religion;
 
@@ -90,11 +90,11 @@ public class User {
         this.gender = gender;
     }
 
-    public LocalDate getDob() {
+    public Date getDob() {
         return dob;
     }
 
-    public void setDob(LocalDate dob) {
+    public void setDob(Date dob) {
         this.dob = dob;
     }
 
