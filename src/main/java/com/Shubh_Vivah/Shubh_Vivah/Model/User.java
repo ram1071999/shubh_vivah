@@ -1,118 +1,196 @@
 package com.Shubh_Vivah.Shubh_Vivah.Model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
 public class User {
-	    @Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private Long id;
 
-	    @NotBlank(message = "Full name is required")
-	    @Column(name = "full_name", nullable = false)
-	    private String fullName;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	    @NotBlank(message = "Gender is required")
-	    private String gender;
+    @NotBlank(message = "Full name is required")
+    private String fullName;
 
-	    @NotBlank(message = "Date of birth is required")
-	    private String dob; // kept as String from the HTML date input, parsed if needed
+    @NotBlank(message = "Gender is required")
+    private String gender;
 
-	    private String religion;
+    @NotNull(message = "Date of birth is required")
+    private LocalDate dob;
 
-	    private String caste;
+    private String religion;
 
-	    @NotBlank(message = "Marital status is required")
-	    @Column(name = "marital_status")
-	    private String maritalStatus;
+    private String caste;
 
-	    private String height;
+    @NotBlank(message = "Marital status is required")
+    private String maritalStatus;
 
-	    private String education;
+    private String height;
 
-	    private String occupation;
+    private String education;
 
-	    @Column(name = "annual_income")
-	    private String annualIncome;
+    private String occupation;
 
-	    private String city;
+    private String annualIncome;
 
-	    private String state;
+    private String city;
 
-	    @NotBlank(message = "Email is required")
-	    @Email(message = "Enter a valid email")
-	    @Column(unique = true, nullable = false)
-	    private String email;
+    private String state;
 
-	    @NotBlank(message = "Phone number is required")
-	    @Pattern(regexp = "\\d{10}", message = "Phone number must be 10 digits")
-	    private String phone;
+    @NotBlank(message = "Email is required")
+    @Email(message = "Enter a valid email address")
+    private String email;
 
-	    @NotBlank(message = "Password is required")
-	    @Size(min = 6, message = "Password must be at least 6 characters")
-	    @Column(nullable = false)
-	    private String password;
+    @NotBlank(message = "Phone number is required")
+    @Pattern(regexp = "^[0-9]{10}$", message = "Enter a valid 10-digit phone number")
+    private String phone;
 
-	    @Column(name = "created_at")
-	    private LocalDateTime createdAt = LocalDateTime.now();
+    @NotBlank(message = "Password is required")
+    @Size(min = 6, message = "Password must be at least 6 characters")
+    private String password;
 
-	    // Getters and setters
+    public User() {
+    }
 
-	    public Long getId() { return id; }
-	    public void setId(Long id) { this.id = id; }
+    // Getters and Setters
 
-	    public String getFullName() { return fullName; }
-	    public void setFullName(String fullName) { this.fullName = fullName; }
+    public Long getId() {
+        return id;
+    }
 
-	    public String getGender() { return gender; }
-	    public void setGender(String gender) { this.gender = gender; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	    public String getDob() { return dob; }
-	    public void setDob(String dob) { this.dob = dob; }
+    public String getFullName() {
+        return fullName;
+    }
 
-	    public String getReligion() { return religion; }
-	    public void setReligion(String religion) { this.religion = religion; }
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
 
-	    public String getCaste() { return caste; }
-	    public void setCaste(String caste) { this.caste = caste; }
+    public String getGender() {
+        return gender;
+    }
 
-	    public String getMaritalStatus() { return maritalStatus; }
-	    public void setMaritalStatus(String maritalStatus) { this.maritalStatus = maritalStatus; }
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
-	    public String getHeight() { return height; }
-	    public void setHeight(String height) { this.height = height; }
+    public LocalDate getDob() {
+        return dob;
+    }
 
-	    public String getEducation() { return education; }
-	    public void setEducation(String education) { this.education = education; }
+    public void setDob(LocalDate dob) {
+        this.dob = dob;
+    }
 
-	    public String getOccupation() { return occupation; }
-	    public void setOccupation(String occupation) { this.occupation = occupation; }
+    public String getReligion() {
+        return religion;
+    }
 
-	    public String getAnnualIncome() { return annualIncome; }
-	    public void setAnnualIncome(String annualIncome) { this.annualIncome = annualIncome; }
+    public void setReligion(String religion) {
+        this.religion = religion;
+    }
 
-	    public String getCity() { return city; }
-	    public void setCity(String city) { this.city = city; }
+    public String getCaste() {
+        return caste;
+    }
 
-	    public String getState() { return state; }
-	    public void setState(String state) { this.state = state; }
+    public void setCaste(String caste) {
+        this.caste = caste;
+    }
 
-	    public String getEmail() { return email; }
-	    public void setEmail(String email) { this.email = email; }
+    public String getMaritalStatus() {
+        return maritalStatus;
+    }
 
-	    public String getPhone() { return phone; }
-	    public void setPhone(String phone) { this.phone = phone; }
+    public void setMaritalStatus(String maritalStatus) {
+        this.maritalStatus = maritalStatus;
+    }
 
-	    public String getPassword() { return password; }
-	    public void setPassword(String password) { this.password = password; }
+    public String getHeight() {
+        return height;
+    }
 
-	    public LocalDateTime getCreatedAt() { return createdAt; }
-	    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
-	
+    public void setHeight(String height) {
+        this.height = height;
+    }
 
+    public String getEducation() {
+        return education;
+    }
 
+    public void setEducation(String education) {
+        this.education = education;
+    }
+
+    public String getOccupation() {
+        return occupation;
+    }
+
+    public void setOccupation(String occupation) {
+        this.occupation = occupation;
+    }
+
+    public String getAnnualIncome() {
+        return annualIncome;
+    }
+
+    public void setAnnualIncome(String annualIncome) {
+        this.annualIncome = annualIncome;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
