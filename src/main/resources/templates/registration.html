@@ -38,12 +38,7 @@
                 </select>
                 <div class="invalid-feedback" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></div>
               </div>
-              <div class="col-md-3">
-                <label class="form-label">Date of Birth *</label>
-                <input type="date" class="form-control" th:field="*{dob}"
-                       th:classappend="${#fields.hasErrors('dob')} ? 'is-invalid'">
-                <div class="invalid-feedback" th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"></div>
-              </div>
+              
 
               <div class="col-md-4">
                 <label class="form-label">Religion</label>
