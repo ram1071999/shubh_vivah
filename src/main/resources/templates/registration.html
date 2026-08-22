@@ -1,196 +1,154 @@
-package com.Shubh_Vivah.Shubh_Vivah.Model;
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment::Head">
+</head>
+<body>
+<div th:replace="fragment::newnav2"></div>
 
-import java.time.LocalDate;
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-9">
+      <div class="card shadow border-0">
+        <div class="card-header bg-danger text-white text-center py-3">
+          <h3 class="mb-0">New Profile Registration</h3>
+        </div>
+        <div class="card-body p-4">
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+          <!-- General error (password mismatch / duplicate email) -->
+          <div class="alert alert-danger" th:if="${errorMessage}" th:text="${errorMessage}"></div>
 
-@Entity
-@Table(name = "users")
-public class User {
+          <form th:action="@{/register}" th:object="${user}" method="post" onsubmit="return validateForm()">
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+            <h5 class="text-danger mb-3">Personal Details</h5>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Full Name *</label>
+                <input type="text" class="form-control" th:field="*{fullName}"
+                       th:classappend="${#fields.hasErrors('fullName')} ? 'is-invalid'">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></div>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">Gender *</label>
+                <select class="form-select" th:field="*{gender}"
+                        th:classappend="${#fields.hasErrors('gender')} ? 'is-invalid'">
+                  <option value="">Select</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></div>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">Date of Birth *</label>
+                <input type="date" class="form-control" th:field="*{dob}"
+                       th:classappend="${#fields.hasErrors('dob')} ? 'is-invalid'">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"></div>
+              </div>
 
-    @NotBlank(message = "Full name is required")
-    private String fullName;
+              <div class="col-md-4">
+                <label class="form-label">Religion</label>
+                <input type="text" class="form-control" th:field="*{religion}">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Caste</label>
+                <input type="text" class="form-control" th:field="*{caste}">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Marital Status *</label>
+                <select class="form-select" th:field="*{maritalStatus}"
+                        th:classappend="${#fields.hasErrors('maritalStatus')} ? 'is-invalid'">
+                  <option value="">Select</option>
+                  <option value="Never Married">Never Married</option>
+                  <option value="Divorced">Divorced</option>
+                  <option value="Widowed">Widowed</option>
+                </select>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('maritalStatus')}" th:errors="*{maritalStatus}"></div>
+              </div>
 
-    @NotBlank(message = "Gender is required")
-    private String gender;
+              <div class="col-md-4">
+                <label class="form-label">Height</label>
+                <input type="text" class="form-control" th:field="*{height}" placeholder="e.g. 5'6&quot;">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Education</label>
+                <input type="text" class="form-control" th:field="*{education}">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Occupation</label>
+                <input type="text" class="form-control" th:field="*{occupation}">
+              </div>
 
-    @NotNull(message = "Date of birth is required")
-    private LocalDate dob;
+              <div class="col-md-6">
+                <label class="form-label">Annual Income</label>
+                <input type="text" class="form-control" th:field="*{annualIncome}">
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">City</label>
+                <input type="text" class="form-control" th:field="*{city}">
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">State</label>
+                <input type="text" class="form-control" th:field="*{state}">
+              </div>
+            </div>
 
-    private String religion;
+            <hr class="my-4">
+            <h5 class="text-danger mb-3">Account Details</h5>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Email *</label>
+                <input type="email" class="form-control" th:field="*{email}"
+                       th:classappend="${#fields.hasErrors('email')} ? 'is-invalid'">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Phone Number *</label>
+                <input type="tel" class="form-control" th:field="*{phone}"
+                       th:classappend="${#fields.hasErrors('phone')} ? 'is-invalid'">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Password *</label>
+                <input type="password" class="form-control" id="password" th:field="*{password}"
+                       th:classappend="${#fields.hasErrors('password')} ? 'is-invalid'">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Confirm Password *</label>
+                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" minlength="6" required>
+              </div>
+            </div>
 
-    private String caste;
+            <div class="form-check mt-3">
+              <input class="form-check-input" type="checkbox" required id="terms">
+              <label class="form-check-label" for="terms">
+                I agree to the Terms &amp; Conditions
+              </label>
+            </div>
 
-    @NotBlank(message = "Marital status is required")
-    private String maritalStatus;
+            <div class="d-grid mt-4">
+              <button type="submit" class="btn btn-danger btn-lg">Register</button>
+            </div>
 
-    private String height;
+          </form>
 
-    private String education;
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-    private String occupation;
-
-    private String annualIncome;
-
-    private String city;
-
-    private String state;
-
-    @NotBlank(message = "Email is required")
-    @Email(message = "Enter a valid email address")
-    private String email;
-
-    @NotBlank(message = "Phone number is required")
-    @Pattern(regexp = "^[0-9]{10}$", message = "Enter a valid 10-digit phone number")
-    private String phone;
-
-    @NotBlank(message = "Password is required")
-    @Size(min = 6, message = "Password must be at least 6 characters")
-    private String password;
-
-    public User() {
-    }
-
-    // Getters and Setters
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public LocalDate getDob() {
-        return dob;
-    }
-
-    public void setDob(LocalDate dob) {
-        this.dob = dob;
-    }
-
-    public String getReligion() {
-        return religion;
-    }
-
-    public void setReligion(String religion) {
-        this.religion = religion;
-    }
-
-    public String getCaste() {
-        return caste;
-    }
-
-    public void setCaste(String caste) {
-        this.caste = caste;
-    }
-
-    public String getMaritalStatus() {
-        return maritalStatus;
-    }
-
-    public void setMaritalStatus(String maritalStatus) {
-        this.maritalStatus = maritalStatus;
-    }
-
-    public String getHeight() {
-        return height;
-    }
-
-    public void setHeight(String height) {
-        this.height = height;
-    }
-
-    public String getEducation() {
-        return education;
-    }
-
-    public void setEducation(String education) {
-        this.education = education;
-    }
-
-    public String getOccupation() {
-        return occupation;
-    }
-
-    public void setOccupation(String occupation) {
-        this.occupation = occupation;
-    }
-
-    public String getAnnualIncome() {
-        return annualIncome;
-    }
-
-    public void setAnnualIncome(String annualIncome) {
-        this.annualIncome = annualIncome;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+<script>
+function validateForm() {
+  var pass = document.getElementById("password").value;
+  var confirm = document.getElementById("confirmPassword").value;
+  if (pass !== confirm) {
+    alert("Password and Confirm Password do not match!");
+    return false;
+  }
+  return true;
 }
+</script>
+<div th:replace="fragment::script"></div>
+</body>
+</html>
