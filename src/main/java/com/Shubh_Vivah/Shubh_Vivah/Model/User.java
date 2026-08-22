@@ -1,6 +1,6 @@
 package com.Shubh_Vivah.Shubh_Vivah.Model;
 
-import java.time.LocalDate;
+
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,8 +27,7 @@ public class User {
     @NotBlank(message = "Gender is required")
     private String gender;
 
-    @NotNull(message = "Date of birth is required")
-    private LocalDate dob;
+   
 
     private String religion;
 
@@ -90,13 +89,7 @@ public class User {
         this.gender = gender;
     }
 
-    public LocalDate getDob() {
-        return dob;
-    }
-
-    public void setDob(LocalDate dob) {
-        this.dob = dob;
-    }
+  
 
     public String getReligion() {
         return religion;
