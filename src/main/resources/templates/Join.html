@@ -260,11 +260,76 @@
       <div class="row g-3">
         <div class="col-md-6">
           <label class="required">Highest Education</label>
-          <input th:field="*{education}" type="text" class="form-control" name="education" placeholder="e.g. B.Tech, MBA, B.A." required>
+         
+          <select th:field="*{education}" class="form-select" >
+            <option value=""> Select Education </option>
+                  <option value="High School">High School(10th)</option>
+                   <option value="Intermediate">Intermediate(12th)</option>
+                   <option value="Diploma">Diploma</option>
+                   <option value="Bachelor's Degree (B.A / B.Sc / B.Com)">Bachelor's Degree (B.A / B.Sc / B.Com)</option>
+                   <option value="Bachelor of Engineering / Technology (B.E / B.Tech)">Bachelor of Engineering / Technology (B.E / B.Tech)</option>
+                   <option value="Bachelor of Computer Applications (BCA)">Bachelor of Computer Applications (BCA)</option>
+                   <option value="Bachelor of Business Administration (BBA)">Bachelor of Business Administration (BBA)</option>
+                   <option value="LLB (Law)">LLB (Law)</option>
+                   <option value="MBBS (Medicine)">MBBS (Medicine)</option>
+                   <option value="Master's Degree (M.A / M.Sc / M.Com)">Master's Degree (M.A / M.Sc / M.Com)</option>
+
+                   <option value="Master of Engineering / Technology (M.E / M.Tech)">Master of Engineering / Technology (M.E / M.Tech)</option>
+                   <option value="Master of Business Administration (MBA)">Master of Business Administration (MBA)</option> 
+                   <option value="Master of Computer Applications (MCA)">Master of Computer Applications (MCA)</option>
+                   <option value="MD / MS (Medicine)">MD / MS (Medicine)</option>
+                   <option value="LLM (Law)">LLM (Law)</option>
+                   <option value="CA / CS / ICWA">CA / CS / ICWA</option>
+                   <option value="PhD / Doctorate">PhD / Doctorate</option>
+
+                   <option value="Diploma in Education (D.Ed / B.Ed)">Diploma in Education (D.Ed / B.Ed)</option>
+                   <option value="Other">Other</option>
+                  
+          </select>
         </div>
         <div class="col-md-6">
           <label>Occupation</label>
-          <input th:field="*{occupation}"  type="text" class="form-control" name="occupation" placeholder="e.g. Software Engineer">
+        
+          <select th:field="*{occupation}"  class="form-select">
+            
+<option value=""> Select Occupation </option>
+     <option value="Government Employee">Government Employee</option>
+     <option value="Civil Services (IAS/IPS/IFS etc.)">Civil Services (IAS/IPS/IFS etc.) </option>
+     <option value="Defence (Army/Navy/Air Force)">Defence (Army/Navy/Air Force)</option>
+     <option value="Public Sector Undertaking (PSU)">Public Sector Undertaking (PSU)</option>
+     <option value="Police">Police</option>
+     <option value="Private Company Employee">Private Company Employee</option>
+     <option value="IT Professional / Software Engineer">IT Professional / Software Engineer</option>
+
+     <option value="Banking Professional">Banking Professional</option>
+     <option value="Sales / Marketing Professional">Sales / Marketing Professional</option>
+     <option value="HR Professional">HR Professional</option>
+
+
+     <option value="Doctor">Doctor</option>
+     <option value="Engineer">Engineer</option>
+     <option value="Lawyer / Advocate">Lawyer / Advocate</option>
+
+
+     <option value="Chartered Accountant (CA)">Chartered Accountant (CA)</option>
+
+     <option value="Architect">Architect</option>
+     <option value="Teacher / Professor">Teacher / Professor</option>
+
+     <option value="Scientist / Researcher">Scientist / Researcher</option>
+     <option value="Consultant">Consultant</option>
+     <option value="Business / Self Employed">Business / Self Employed</option>
+     <option value="Entrepreneur">Entrepreneur</option>
+
+     <option value="Farmer / Agriculture">Farmer / Agriculture</option>
+     <option value="Artist / Actor / Media">Artist / Actor / Media</option>
+     <option value="Homemaker">Homemaker</option>
+
+     <option value="Student">Student</option>
+     <option value="Not Working">Not Working</option>
+     <option value="Retired">Retired</option>
+     <option value="Other">Other</option>
+          </select>
         </div>
         <div class="col-md-6">
           <label>Annual Income</label>
