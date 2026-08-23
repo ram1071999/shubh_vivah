@@ -42,13 +42,13 @@
                 <label class="form-label">Religion</label>
                 <select class="form-control w-100" th:field="*{religion}">
                      <option value="" >Select Religion</option>
-            <option value="Hindu">Hindu</option>
-            <option value="Muslim">Muslim</option>
-            <option value="Sikh">Sikh</option>
-            <option value="Christian">Christian</option>
-            <option value="Jain">Jain</option>
-            <option value="Buddhist">Buddhist</option>
-            <option value="Other">Other</option>
+                     <option value="Hindu">Hindu</option>
+                     <option value="Muslim">Muslim</option>
+                     <option value="Sikh">Sikh</option>
+                     <option value="Christian">Christian</option>
+                    <option value="Jain">Jain</option>
+                   <option value="Buddhist">Buddhist</option>
+                   <option value="Other">Other</option>
                   
                 </select>
                
@@ -161,7 +161,32 @@
               </div>
               <div class="col-md-4">
                 <label class="form-label">Education</label>
-                <input type="text" class="form-control" th:field="*{education}">
+                <select  class="form-select" th:field="*{education}">
+                  <option value=""> Select Education </option>
+                  <option value="High School">High School(10th)</option>
+                   <option value="Intermediate">Intermediate(12th)</option>
+                   <option value="Diploma">Diploma</option>
+                   <option value="Bachelor's Degree (B.A / B.Sc / B.Com)">Bachelor's Degree (B.A / B.Sc / B.Com)</option>
+                   <option value="Bachelor of Engineering / Technology (B.E / B.Tech)">Bachelor of Engineering / Technology (B.E / B.Tech)</option>
+                   <option value="Bachelor of Computer Applications (BCA)">Bachelor of Computer Applications (BCA)</option>
+                   <option value="Bachelor of Business Administration (BBA)">Bachelor of Business Administration (BBA)</option>
+                   <option value="LLB (Law)">LLB (Law)</option>
+                   <option value="MBBS (Medicine)">MBBS (Medicine)</option>
+                   <option value="Master's Degree (M.A / M.Sc / M.Com)">Master's Degree (M.A / M.Sc / M.Com)</option>
+
+                   <option value="Master of Engineering / Technology (M.E / M.Tech)">Master of Engineering / Technology (M.E / M.Tech)</option>
+                   <option value="Master of Business Administration (MBA)">Master of Business Administration (MBA)</option> 
+                   <option value="Master of Computer Applications (MCA)">Master of Computer Applications (MCA)</option>
+                   <option value="MD / MS (Medicine)">MD / MS (Medicine)</option>
+                   <option value="LLM (Law)">LLM (Law)</option>
+                   <option value="CA / CS / ICWA">CA / CS / ICWA</option>
+                   <option value="PhD / Doctorate">PhD / Doctorate</option>
+
+                   <option value="Diploma in Education (D.Ed / B.Ed)">Diploma in Education (D.Ed / B.Ed)</option>
+                   <option value="Other">Other</option>
+                  
+                </select>
+                
               </div>
               <div class="col-md-4">
                 <label class="form-label">Occupation</label>
