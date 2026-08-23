@@ -47,7 +47,7 @@
         <div class="col-md-4">
           <label class="required">Height</label>
          
-        <select type="number" class="form-control" th:field="*{height}" placeholder="Height.. ">
+        <select  class="form-control" th:field="*{height}" placeholder="Height.. ">
           <option value="">Select Height</option>
          
              <option value="Below 4ft 6in – 137cm">Below 4ft 6in – 137cm </option>
@@ -182,7 +182,7 @@
         <div class="col-md-4">
           <label>Caste / Community</label>
           <!---------------------------Cast / Community-- Start---------------------------------------------------------------------------------->
-          <select th:field="*{caste}" class="form-select w-100">
+          <select class="form-select" th:field="*{caste}" required >
 
  <option value="Brahmin">Brahmin</option>
 <option value="Rajput">Rajput</option>
