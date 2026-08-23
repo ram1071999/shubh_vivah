@@ -40,12 +40,24 @@
 
               <div class="col-md-4">
                 <label class="form-label">Religion</label>
-                <input type="text" class="form-control" th:field="*{religion}">
+                <select class="form-control w-100" th:field="*{religion}">
+                     <option value="" >Select Religion</option>
+            <option value="Hindu">Hindu</option>
+            <option value="Muslim">Muslim</option>
+            <option value="Sikh">Sikh</option>
+            <option value="Christian">Christian</option>
+            <option value="Jain">Jain</option>
+            <option value="Buddhist">Buddhist</option>
+            <option value="Other">Other</option>
+                  
+                </select>
+               
               </div>
               <div class="col-md-4">
                 <label class="form-label">Caste</label>
                
                 <select th:field="*{caste}" class="form-select w-100">
+                  <opton value="" >Select Caste</opton>
                   <option value="Brahmin">Brahmin</option>
                   <option value="Rajput">Rajput</option>
                   <option value="Jat">Jat</option>
