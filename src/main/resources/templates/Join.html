@@ -44,7 +44,7 @@
           <label class="required">Date of Birth</label>
           <input type="date" class="form-control" th:field="*{dob}" name="dob" required>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
           <label class="required">Height</label>
          
         <select type="number" class="form-control" th:field="*{height}" placeholder="Height.. ">
@@ -78,20 +78,15 @@
              <option value="6ft 5in – 195cm"> 6ft 5in – 195cm </option>
              <option value="6ft 6in – 198cm">6ft 6in – 198cm </option>
              <option value="6ft 7in – 200cm">6ft 7in – 200cm </option>
-             <option value="6ft 8in – 203cm">6ft 8in – 203cm </option>
-             <option value="6ft 9in – 205cm">6ft 9in – 205cm </option>
-             <option value="6ft 10in – 208cm">6ft 10in – 208cm </option>
-             <option value="6ft 10in – 208cm">6ft 10in – 208cm </option>
-             <option value="6ft 11in – 210cm">6ft 11in – 210cm </option>
-             <option value="7ft – 213cm"> 7ft – 213cm</option>
-             <option value="Above 7ft – 213cm">Above 7ft – 213cm </option> 
-        
-          
-          
+             <option value="6ft 8in – 203cm"> 6ft 8in – 203cm </option>
+             <option value="6ft 9in – 205cm"> 6ft 9in – 205cm </option>
+             <option value="6ft 10in – 208cm"> 6ft 10in – 208cm </option>
+             <option value="6ft 10in – 208cm"> 6ft 10in – 208cm </option>
+             <option value="6ft 11in – 210cm"> 6ft 11in – 210cm </option>
+             <option value="7ft – 213cm"> 7ft – 213cm </option>
+             <option value="Above 7ft – 213cm">Above 7ft – 213cm </option>      
         </select>
-
-         
-       </div>
+     </div>
         <div class="col-md-4">
           <label>Weight</label>
           <input type="number" class="form-control" th:field="*{weight}" name="weight" placeholder="e.g. 60" min="30" max="200">
@@ -109,8 +104,7 @@
         <div class="col-md-6">
           <label>Language</label>
          
-          
-          <select class="form-select p-2 rounded-pill m-1" th:field="*{language}"  name="language" aria-label="Default select example">
+  <select class="form-select p-2 rounded-pill m-1" th:field="*{language}"  name="language" aria-label="Default select example">
   <option value="">select for Language</option>
   <option value="English">English</option>
   <option value="Hindi">Hindi</option>
