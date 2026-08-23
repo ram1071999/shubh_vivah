@@ -27,7 +27,7 @@
               </div>
               <div class="col-md-3">
                 <label class="form-label">Gender *</label>
-                <select class="form-select" th:field="*{gender}"
+                <select class="form-select w-100" th:field="*{gender}"
                         th:classappend="${#fields.hasErrors('gender')} ? 'is-invalid'">
                   <option value="">Select</option>
                   <option value="Male">Male</option>
@@ -45,7 +45,7 @@
               <div class="col-md-4">
                 <label class="form-label">Caste</label>
                
-                <select th:field="*{caste}" class="form-select">
+                <select th:field="*{caste}" class="form-select w-100">
                   <option value="Brahmin">Brahmin</option>
                   <option value="Rajput">Rajput</option>
                   <option value="Jat">Jat</option>
@@ -101,7 +101,7 @@
               <div class="col-md-4">
                 <label class="form-label">Height</label>
                 <!------------------------------Height Start----------------------------------------->
-                 <select type="text" class="form-control" th:field="*{height}" placeholder="e.g. 5'6&quot;">
+                 <select  class="form-control w-100" th:field="*{height}" placeholder="e.g. 5'6&quot;">
           <option value="">Select Height</option>
           <option value=""> </option>
              <option value="Below 4ft 6in – 137cm">Below 4ft 6in – 137cm </option>
@@ -158,7 +158,7 @@
 
               <div class="col-md-6">
                 <label class="form-label">Annual Income</label>
-                <input type="text" class="form-control" th:field="*{annualIncome}">
+                <input type="text" class="form-control" th:field="*{annualIncome}" placeholder="Annual Income/year..">
               </div>
               <div class="col-md-3">
                 <label class="form-label">City</label>
