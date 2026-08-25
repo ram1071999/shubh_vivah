@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment::Head">
+</head>
+<body>
+<div th:replace="fragment::newnav2"></div>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-9">
+      <div class="card shadow border-0">
+        <div class="card-header bg-danger text-white text-center py-3">
+          <h3 class="mb-0">New Profile Registration</h3>
+        </div>
+        <div class="card-body p-4">
+          <!-- General error (password mismatch / duplicate email) -->
+          <div class="alert alert-danger" th:if="${errorMessage}" th:text="${errorMessage}"></div>
+
+          <form th:action="@{/register}" th:object="${user}" method="post" onsubmit="return validateForm()">
+
+           <h5 class="text-danger mb-3">Personal Details</h5>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Full Name *</label>
+                <input type="text" class="form-control" th:field="*{fullName}"
+                       th:classappend="${#fields.hasErrors('fullName')} ? 'is-invalid'">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></div>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">Gender *</label>
+                <select class="form-select w-100" th:field="*{gender}"
+                        th:classappend="${#fields.hasErrors('gender')} ? 'is-invalid'">
+                  <option value="">Select</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></div>
+              </div>
+              
+
+              <div class="col-md-4">
+                <label class="form-label">Religion</label>
+                <select class="form-control w-100" th:field="*{religion}">
+                     <option value="" >Select Religion</option>
+                     <option value="Hindu">Hindu</option>
+                     <option value="Muslim">Muslim</option>
+                     <option value="Sikh">Sikh</option>
+                     <option value="Christian">Christian</option>
+                    <option value="Jain">Jain</option>
+                   <option value="Buddhist">Buddhist</option>
+                   <option value="Other">Other</option>
+                  
+                </select>
+               
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Caste</label>
+               
+                <select th:field="*{caste}" class="form-select w-100">
+                  <opton value="" >Select Caste</opton>
+                  <option value="Brahmin">Brahmin</option>
+                  <option value="Rajput">Rajput</option>
+                  <option value="Jat">Jat</option>
+                  <option value="Yadav">Yadav</option>
+                  <option value="Kayastha">Kayastha</option>
+                  <option value="Baniya / Vaishya">Baniya / Vaishya</option>
+                  <option value="Kurmi">Kurmi</option>
+                  <option value="Gujjar">Gujjar</option>
+                  <option value="Ahir">Ahir</option>
+                  <option value="Kushwaha">Kushwaha</option>
+               <option value="Chauhan">Chauhan</option>
+<option value="Nair">Nair</option>
+<option value="Iyer">Iyer</option>
+<option value="Iyengar">Iyengar</option>
+<option value="Reddy">Reddy</option>
+<option value="Naidu">Naidu</option>
+<option value="Chettiar">Chettiar</option>
+<option value="Vellalar">Vellalar</option>
+<option value="Gowda">Gowda</option>
+<option value="OBC">OBC</option>
+<option value="Kurmi">Kurmi</option>
+<option value="Koeri">Koeri</option>
+<option value="Mali">Mali</option>
+<option value="Lohar">Lohar</option>
+<option value="Kumhar">Kumhar</option>
+<option value="Nai">Nai</option>
+<option value="Dhobi">Dhobi</option>
+<option value="SC">SC</option>
+<option value="ST">ST</option>
+<option value="Sikh">Sikh</option>
+<option value="Jain">Jain</option>
+<option value="Christian">Christian </option>
+<option value="Muslim">Muslim</option>
+<option value="">Other</option>
+
+                </select>
+                
+
+                
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Marital Status *</label>
+                <select class="form-select" th:field="*{maritalStatus}"
+                        th:classappend="${#fields.hasErrors('maritalStatus')} ? 'is-invalid'">
+                  <option value="">Select</option>
+                  <option value="Never Married">Never Married</option>
+                  <option value="Divorced">Divorced</option>
+                  <option value="Widowed">Widowed</option>
+                </select>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('maritalStatus')}" th:errors="*{maritalStatus}"></div>
+              </div>
+
+              <div class="col-md-4">
+                <label class="form-label">Height</label>
+                <!------------------------------Height Start----------------------------------------->
+                 <select  class="form-control w-100" th:field="*{height}" placeholder="e.g. 5'6&quot;">
+          <option value="">Select Height</option>
+          <option value=""> </option>
+             <option value="Below 4ft 6in – 137cm">Below 4ft 6in – 137cm </option>
+             <option value="4ft 6in – 137cm"> 4ft 6in – 137cm</option>
+             <option value="4ft 7in – 139cm">4ft 7in – 139cm </option>
+             <option value="4ft 8in – 142cm"> 4ft 8in – 142cm</option>
+             <option value="4ft 9in – 144cm">4ft 9in – 144cm </option>
+             <option value="4ft 10in – 147cm">4ft 10in – 147cm </option>
+             <option value="4ft 11in – 149cm">4ft 11in – 149cm </option>
+             <option value="5ft – 152cm">5ft – 152cm </option>
+             <option value="5ft 1in – 154cm">5ft 1in – 154cm </option>
+             <option value="5ft 2in – 157cm">5ft 2in – 157cm </option>
+             <option value="5ft 3in – 160cm">5ft 3in – 160cm </option>
+             <option value="5ft 4in – 162cm">5ft 4in – 162cm </option>
+             <option value="5ft 5in – 165cm">5ft 5in – 165cm </option>
+             <option value="5ft 6in – 167cm">5ft 6in – 167cm </option>
+
+             <option value="5ft 7in – 170cm"> 5ft 7in – 170cm</option>
+             <option value="5ft 8in – 172cm">5ft 8in – 172cm </option>
+           <option value="5ft 9in – 175cm"> 5ft 9in – 175cm</option>
+           <option value="5ft 10in – 177cm">5ft 10in – 177cm </option>
+           <option value="5ft 11in – 180cm">5ft 11in – 180cm </option>
+           <option value="6ft – 182cm">6ft – 182cm </option>
+           <option value="6ft 1in – 185cm"> 6ft 1in – 185cm </option>
+           <option value="6ft 2in – 187cm">6ft 2in – 187cm </option>
+           <option value="6ft 3in – 190cm">6ft 3in – 190cm </option>
+           <option value="6ft 4in – 193cm">6ft 4in – 193cm </option>
+           <option value="6ft 5in – 195cm"> 6ft 5in – 195cm </option>
+           <option value="6ft 6in – 198cm">6ft 6in – 198cm </option>
+           <option value="6ft 7in – 200cm">6ft 7in – 200cm </option>
+           <option value="6ft 8in – 203cm">6ft 8in – 203cm </option>
+           <option value="6ft 9in – 205cm">6ft 9in – 205cm </option>
+           <option value="6ft 10in – 208cm">6ft 10in – 208cm </option>
+           <option value="6ft 10in – 208cm">6ft 10in – 208cm </option>
+           <option value="6ft 11in – 210cm">6ft 11in – 210cm </option>
+           <option value="7ft – 213cm"> 7ft – 213cm</option>
+           <option value="Above 7ft – 213cm">Above 7ft – 213cm </option> 
+        
+          
+          
+        </select>
+
+                <!----------------------------------height End------------------------------------------------------>
+              
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Education</label>
+                <select  class="form-select" th:field="*{education}">
+                  <option value=""> Select Education </option>
+                  <option value="High School">High School(10th)</option>
+                   <option value="Intermediate">Intermediate(12th)</option>
+                   <option value="Diploma">Diploma</option>
+                   <option value="Bachelor's Degree (B.A / B.Sc / B.Com)">Bachelor's Degree (B.A / B.Sc / B.Com)</option>
+                   <option value="Bachelor of Engineering / Technology (B.E / B.Tech)">Bachelor of Engineering / Technology (B.E / B.Tech)</option>
+                   <option value="Bachelor of Computer Applications (BCA)">Bachelor of Computer Applications (BCA)</option>
+                   <option value="Bachelor of Business Administration (BBA)">Bachelor of Business Administration (BBA)</option>
+                   <option value="LLB (Law)">LLB (Law)</option>
+                   <option value="MBBS (Medicine)">MBBS (Medicine)</option>
+                   <option value="Master's Degree (M.A / M.Sc / M.Com)">Master's Degree (M.A / M.Sc / M.Com)</option>
+
+                   <option value="Master of Engineering / Technology (M.E / M.Tech)">Master of Engineering / Technology (M.E / M.Tech)</option>
+                   <option value="Master of Business Administration (MBA)">Master of Business Administration (MBA)</option> 
+                   <option value="Master of Computer Applications (MCA)">Master of Computer Applications (MCA)</option>
+                   <option value="MD / MS (Medicine)">MD / MS (Medicine)</option>
+                   <option value="LLM (Law)">LLM (Law)</option>
+                   <option value="CA / CS / ICWA">CA / CS / ICWA</option>
+                   <option value="PhD / Doctorate">PhD / Doctorate</option>
+
+                   <option value="Diploma in Education (D.Ed / B.Ed)">Diploma in Education (D.Ed / B.Ed)</option>
+                   <option value="Other">Other</option>
+                  
+                </select>
+                
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Occupation</label>
+                <select class="form-select" th:field="*{occupation}">
+                  <option value=""> Select Occupation </option>
+     <option value="Government Employee">Government Employee</option>
+     <option value="Civil Services (IAS/IPS/IFS etc.)">Civil Services (IAS/IPS/IFS etc.) </option>
+     <option value="Defence (Army/Navy/Air Force)">Defence (Army/Navy/Air Force)</option>
+     <option value="Public Sector Undertaking (PSU)">Public Sector Undertaking (PSU)</option>
+     <option value="Police">Police</option>
+     <option value="Private Company Employee">Private Company Employee</option>
+     <option value="IT Professional / Software Engineer">IT Professional / Software Engineer</option>
+
+     <option value="Banking Professional">Banking Professional</option>
+     <option value="Sales / Marketing Professional">Sales / Marketing Professional</option>
+     <option value="HR Professional">HR Professional</option>
+
+
+     <option value="Doctor">Doctor</option>
+     <option value="Engineer">Engineer</option>
+     <option value="Lawyer / Advocate">Lawyer / Advocate</option>
+
+
+     <option value="Chartered Accountant (CA)">Chartered Accountant (CA)</option>
+
+     <option value="Architect">Architect</option>
+     <option value="Teacher / Professor">Teacher / Professor</option>
+
+     <option value="Scientist / Researcher">Scientist / Researcher</option>
+     <option value="Consultant">Consultant</option>
+     <option value="Business / Self Employed">Business / Self Employed</option>
+     <option value="Entrepreneur">Entrepreneur</option>
+
+     <option value="Farmer / Agriculture">Farmer / Agriculture</option>
+     <option value="Artist / Actor / Media">Artist / Actor / Media</option>
+     <option value="Homemaker">Homemaker</option>
+
+     <option value="Student">Student</option>
+     <option value="Not Working">Not Working</option>
+     <option value="Retired">Retired</option>
+     <option value="Other">Other</option>
+                </select>
+                
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Annual Income</label>
+                <input type="text" class="form-control" th:field="*{annualIncome}" placeholder="Annual Income/year..">
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">City</label>
+                <input type="text" class="form-control" th:field="*{city}">
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">State</label>
+                <select class="form-select" th:field="*{state}">
+                  <option value="" selected>select for State</option>
+  <option value="Andhra Pradesh">Andhra Pradesh</option>
+  <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+  <option value="Assam">Assam</option>
+  <option value="Bihar">Bihar</option>
+  <option value="Chhattisgarh">Chhattisgarh</option>
+  <option value="Goa">Goa</option>
+  <option value="Gujarat">Gujarat</option>
+  <option value="Haryana">Haryana</option>
+  <option value="Himachal Pradesh">Himachal Pradesh</option>
+  <option value="Jharkhand">Jharkhand</option>
+  <option value="Karnataka">Karnataka</option>
+  <option value="Kerala">Kerala</option>
+  <option value="Madhya Pradesh">Madhya Pradesh</option>
+  <option value="Maharashtra">Maharashtra</option>
+  <option value="Manipur">Manipur</option>
+  <option value="Meghalaya">Meghalaya</option>
+  <option value="Mizoram">Mizoram</option>
+  <option value="Nagaland">Nagaland</option>
+  <option value="Odisha">Odisha</option>
+  <option value="Punjab">Punjab</option>
+  <option value="Rajasthan">Rajasthan</option>
+  <option value="Sikkim">Sikkim</option>
+  <option value="Tamil Nadu">Tamil Nadu</option>
+  <option value="Telangana">Telangana</option>
+  <option value="Tripura">Tripura</option>
+  <option value="Uttar Pradesh">Uttar Pradesh</option>
+  <option value="Uttarakhand">Uttarakhand</option>
+  <option value="West Bengal">West Bengal</option>
+
+  <!-- Union Territories -->
+  <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+  <option value="Chandigarh">Chandigarh</option>
+  <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+  <option value="Delhi">Delhi</option>
+  <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+  <option value="Ladakh">Ladakh</option>
+  <option value="Lakshadweep">Lakshadweep</option>
+  <option value="Puducherry">Puducherry</option>
+                  
+                </select>
+               
+              </div>
+            </div>
+
+            <hr class="my-4">
+            <h5 class="text-danger mb-3">Account Details</h5>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Email *</label>
+                <input type="email" class="form-control" th:field="*{email}"
+                       th:classappend="${#fields.hasErrors('email')} ? 'is-invalid'">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Phone Number *</label>
+                <input type="tel" class="form-control" th:field="*{phone}"
+                       th:classappend="${#fields.hasErrors('phone')} ? 'is-invalid'">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Password *</label>
+                <input type="password" class="form-control" id="password" th:field="*{password}"
+                       th:classappend="${#fields.hasErrors('password')} ? 'is-invalid'">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Confirm Password *</label>
+                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" minlength="6" required>
+              </div>
+            </div>
+
+            <div class="form-check mt-3">
+              <input class="form-check-input" type="checkbox" required id="terms">
+              <label class="form-check-label" for="terms">
+                I agree to the Terms &amp; Conditions
+              </label>
+            </div>
+
+            <div class="d-grid mt-4">
+              <button type="submit" class="btn btn-danger btn-lg">Register</button>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function validateForm() {
+  var pass = document.getElementById("password").value;
+  var confirm = document.getElementById("confirmPassword").value;
+  if (pass !== confirm) {
+    alert("Password and Confirm Password do not match!");
+    return false;
+  }
+  return true;
+}
+</script>
+
+  <div th:replace="fragment::footer"></div>
+  <div th:replace="fragment::script"></div>
+</body>
+</html>

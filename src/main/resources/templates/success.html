@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragment::Head"></div>
+<body class="bg-light">
+  <div th:replace="fragment::newnav2"></div>
+<div class="container d-flex justify-content-center align-items-center" style="height:100vh;">
+  <div class="card shadow p-5 text-center border-0" style="max-width:500px;">
+    <h2 class="text-success mb-3">✅ Registration Successful!</h2>
+    <p class="fs-5">Welcome, <strong th:text="${fullName}">User</strong>!</p>
+    <p class="text-muted">Your Shubh Vivah profile has been created successfully.</p>
+    <a th:href="@{/login}" class="btn btn-danger mt-3">Login</a>
+  </div>
+</div>
+  <div th:replace="fragment::footer"></div>
+</body>
+</html>
