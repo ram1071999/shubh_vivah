@@ -12,7 +12,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
-
     private final CustomUserDetailsService userDetailsService;
     // Manual constructor — replaces @RequiredArgsConstructor
     public SecurityConfig(CustomUserDetailsService userDetailsService) {
