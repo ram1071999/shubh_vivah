@@ -1,4 +1,5 @@
-package com.Shubh_Vivah.Shubh_Vivah.Security;
+package com.Shubh_Vivah.Shubh_Vivah.Config;
+
 
 import java.util.Collection;
 import java.util.List;
@@ -9,11 +10,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.Shubh_Vivah.Shubh_Vivah.Model.User;
 
-/**
- * Adapts the existing User entity to Spring Security's UserDetails,
- * so login can authenticate against the same "users" table used by registration.
- */
-public class CustomUserDetails implements UserDetails {
+
+public class CustomUserDetails implements UserDetails{
+	
 
     private final User user;
 
@@ -59,4 +58,7 @@ public class CustomUserDetails implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+	
+
 }
