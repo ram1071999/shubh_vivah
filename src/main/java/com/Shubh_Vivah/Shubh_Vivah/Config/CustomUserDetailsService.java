@@ -1,4 +1,4 @@
-package com.Shubh_Vivah.Shubh_Vivah.Security;
+package com.Shubh_Vivah.Shubh_Vivah.Config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
