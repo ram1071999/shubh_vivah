@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.Shubh_Vivah.Shubh_Vivah.Security.CustomUserDetails;
+import com.Shubh_Vivah.Shubh_Vivah.Config.CustomUserDetails;
 
 @Controller
 public class LoginController {
