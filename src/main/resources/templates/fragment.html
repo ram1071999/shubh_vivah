@@ -116,13 +116,25 @@ border-bottom-right-radius: .3rem;
         
           <a class="nav-link active fw-bold fs-5" href="JoinWedding">Join Wedding</a>
         </li>
-        <li class="nav-item col-sm-2 col-md-3 col-lg-1">
-          <a class="nav-link fw-bold fs-5" href="/login">Login</a>
-        </li>
-        
-        <li class="nav-item col-sm-2 col-md-3 col-lg-1 pl-2">
-          <a class="nav-link fw-bold fs-5 " href="/register">Register</a>
-        </li>
+       <!-- Jab user LOGIN NAHI hai -->
+<li class="nav-item col-sm-2 col-md-3 col-lg-1" sec:authorize="isAnonymous()">
+  <a class="nav-link fw-bold fs-5" href="/login">Login</a>
+</li>
+<li class="nav-item col-sm-2 col-md-3 col-lg-1 pl-2" sec:authorize="isAnonymous()">
+  <a class="nav-link fw-bold fs-5" href="/register">Register</a>
+</li>
+
+<!-- Jab user LOGIN HAI -->
+<li class="nav-item col-sm-2 col-md-3 col-lg-1" sec:authorize="isAuthenticated()">
+  <a class="nav-link fw-bold fs-5" href="/dashboard">
+    <i class="fa fa-user-circle me-1"></i> Profile
+  </a>
+</li>
+<li class="nav-item col-sm-2 col-md-3 col-lg-1" sec:authorize="isAuthenticated()">
+  <form th:action="@{/logout}" method="post" class="d-inline">
+    <button type="submit" class="btn btn-link nav-link fw-bold fs-5" style="border:none;">Logout</button>
+  </form>
+</li>
       </ul>
      
     </div>
