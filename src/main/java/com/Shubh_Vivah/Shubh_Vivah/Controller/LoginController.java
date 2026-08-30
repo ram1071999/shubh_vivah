@@ -10,7 +10,7 @@ import com.Shubh_Vivah.Shubh_Vivah.Config.CustomUserDetails;
 @Controller
 public class LoginController {
 
-    @GetMapping("/wedding")
+    @GetMapping("/login")
     public String showloginpage() {
         return "login";
     }
