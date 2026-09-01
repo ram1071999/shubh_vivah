@@ -60,6 +60,29 @@ public class User {
     @Size(min = 6, message = "Password must be at least 6 characters")
     private String password;
 
+
+    private String resetToken;
+    private LocalDateTime resetTokenExpiry;
+
+    // ... existing getters-setters ...
+
+    // ✅ NAYE GETTERS-SETTERS ADD KARO
+    public String getResetToken() {
+        return resetToken;
+    }
+
+    public void setResetToken(String resetToken) {
+        this.resetToken = resetToken;
+    }
+
+    public LocalDateTime getResetTokenExpiry() {
+        return resetTokenExpiry;
+    }
+
+    public void setResetTokenExpiry(LocalDateTime resetTokenExpiry) {
+        this.resetTokenExpiry = resetTokenExpiry;
+    }
+
     public User() {
     }
 
