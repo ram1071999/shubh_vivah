@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.Shubh_Vivah.Shubh_Vivah.Model.User;
 import com.Shubh_Vivah.Shubh_Vivah.Repository.UserRepository;
-
 @Controller
 public class PasswordResetController {
 
@@ -25,9 +24,8 @@ public class PasswordResetController {
     @Autowired private JavaMailSender mailSender;
     @Autowired private PasswordEncoder passwordEncoder;
 
-    @Value("${app.base-url}")     // <-- ye line add karo (class ke top pe, fields ke saath)
-    private String baseUrl;
-
+     @Value("${app.base-url:https://shubh-vivah-24av.onrender.com}")
+     private String baseUrl;
     @GetMapping("/forgot-password")
     public String showForgotForm() {
         return "forgot-password";
